@@ -1,0 +1,2 @@
+#!/bin/csh
+./clean;cd work;fm_shell -64bit -f ../scf/fm.tcl |tee ../log/fm.log

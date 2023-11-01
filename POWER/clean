@@ -1,0 +1,5 @@
+#!/bin/csh
+
+rm -rf work/*
+rm -rf log/*
+rm -rf rpt/*

@@ -1,0 +1,3 @@
+#!/bin/csh
+
+./clean;cd work;pt_shell -f ../scr/power.tcl |tee ../log/power.log
