@@ -1,0 +1,5 @@
+#!/bin/csh 
+
+./clean;
+cd work;
+dc_shell -64bit -f ../scr/.dc.tcl | tee ../log/dc.log

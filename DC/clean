@@ -1,0 +1,8 @@
+#!/bin/csh
+
+rm -rf work/*
+rm -rf log/*
+rm -rf rpt/*
+rm -rf svf/*
+rm -rf netlist/*
+rm -rf ddc/*

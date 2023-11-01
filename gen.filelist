@@ -1,0 +1,21 @@
+#!/bin/csh
+
+#source 
+
+#set CURRENT_DIR = `pwd`
+
+set PRJ_DIR  = "/home/kiss/darphee/jwq40260/jwq40260"
+
+set PRJ_NAME = "jwq40260"
+
+if !(-d ./COMMON/filelist/${PRJ_NAME}.f)then
+    \rm -rf  ${PRJ_NAME}.f
+endif
+
+if !(-d ${PRJ_DIR}/8_hdl)then
+    echo " HDL source RTL filelist : ../hdl is not exit "
+    exit
+else
+    \find ${PRJ_DIR}/8_hdl -name "*.sv" >> ./COMMON/filelist/${PRJ_NAME}.f
+    echo " generate ${PRJ_NAME} rtl filelist successfull "
+endif

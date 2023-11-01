@@ -1,0 +1,3 @@
+#!/bin/csh
+rm -rf work/*
+cd work;sg_shell -tcl ../scr/spy.tcl

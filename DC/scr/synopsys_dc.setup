@@ -1,0 +1,134 @@
+############################################
+## synopsys_dc.setup 
+############################################
+
+
+# Log Setup
+set sh_command_log_file "../log/dc_commmand.log"
+
+set sh_new_variable_message false
+
+set enable_page_mode false
+
+# Configuration
+source -echo -verbose ../../config.tcl
+
+#suppress messige
+source -echo -verbose ../scr/suppress_message.tcl
+
+#foreach ifile [ls ../../COMMON/scripts/*.tcl] {
+#    source -echo -verbose $ifile
+#}
+
+#dc config
+source -echo -verbose ../dc_config.tcl
+
+source -echo -verbose ../../COMMON/lib/lib_setup.tcl
+
+#some application variable
+set_app_var report_default_significant_digits 4
+set_app_var enable_recovery_removal_arcs true
+set_app_var timing_remove_clock_reconvergence_pessimism true
+set_app_var timing_enable_multiple_clocks_per_reg true
+set_app_var timing_non_unate_clock_compatibility false
+set_app_var timing_input_port_default_clock false
+set_app_var case_analysis_with_logic_constants true
+
+set_app_var rc_noise_model_mode advanced
+set_app_var rc_driver_model_mode advanced
+set_app_var rc_receiver_mode_mode advanced
+set_app_var rc_degrade_min_slew_when_rd_less_than_rnet true
+
+#signoff for PT correction
+#set_app_var ignore_clock_input_delay_for_skew true
+#set_app_var timing_use_enhanced_capacitance_modeling true
+#set_app_var timing_use_clock_specific_source_latency true
+#set_app_var timing_gclock_source_network_num_master_register 10000000
+#set_app_var timing_clock_gating_propgrate_enable true
+#set_app_var timing_library_derate_is_scenario_specific true
+
+#GUI Configuration
+#gui_set_highlight
+if {[shell_is_in_topographical_mode]} {
+}
+
+set_app_var timing_crpr_threshold_ps 1
+
+#RTL Configuration
+set_app_var hdlin_vrlg_std 2001
+set_app_var hdlin_check_no_latch true
+set_app_var hdlin_no_group_register true
+set_app_var hdlin_enable_rtldrc_info true
+set_app_var hdlin_reporting_level verbose
+set_app_var hdlin_mux_size_only 32
+set_app_var hdlin_infer_mux default
+
+set_app_var verilogout_higher_designs_first true
+set_app_var verilogout_no_tri true
+set_app_var verilogout_equation false
+set_app_var write_sdc_output_lumped_net_capacitance false
+set_app_var write_sdc_output_net_resistance false
+set_app_var write_name_nets_same_as_ports true
+
+set_app_var compile_enable_async_mux_mapping false
+set_app_var spg_enable_via_resistance_support true
+set_app_var spg_enhanced_timing_model true
+
+
+#power
+set_app_var power_preserve_rtl_hier_names true
+set_app_var power_enable datapath_gating true
+set_app_var power_remove_redundant_clock_gates false
+set_app_var compile_clock_gating_through_hierarchy true
+set_app_var case_analysis_propagate_through_icg true
+set_app_var auto_insert_level_shifters_on_clocks all
+set_app_var mv_insert_level_shifters_on_ideal_nets all
+set_app_var upf_levshi_on_constraint_only false
+#set_app_var mv_insert_level_shift_verbose true
+set_app_var auto_insert_level_shifters true
+#set_app_var mv_allow_ls_on_leaf_pin_boundary true
+
+
+if {$UPF_FLOW=="1"} {
+    set_app_var upf_create_implicit_supply_sets false
+}
+
+set_app_var power_cg_module_naming_style "SNPS_CLOCK_GATE_%e_%l_%p"
+
+#compile
+set_app_var compile_ultra_ungroup_small_hierarchies true
+set_app_var compile_auto_ungroup_count_leaf_cells true
+set_app_var compile_delete_unloaded_sequential_cells true
+set_app_var compile_seqmap_propagate_constants true
+
+if {!$cfg_use_multibit} {
+    set_app_var compile_seqmap_identify_shift_registers_with_synchronous_logic true
+}
+
+set_app_var compile_seqmap_identify_shift_registers false
+set_app_var access_internal_pins true
+
+set_app_var compile_register_replication_across_hierarchy true
+
+#DFT
+set_app_var test_disable_enhanced_dft_drc_reporting false
+set_app_var test_setup_additional_clock_pulse true
+#set_app_var test_disable_find_best_scan_out true
+#set_app_var test_dont_fix_constant_violations true
+set_app_var test_rtldrc_latch_check_style transparent
+#set_app_var compile_no_new_cells_at_top_level true
+#set_app_var compile_implementation_selection false
+set_app_var test_occ_insert_clock_gating_cells true
+
+
+set_app_var hdlin_shorten_long_module_name true
+set_app_var hdlin_module_name_limit 128
+set_app_var compile_use_fast_sequential_mode false
+set_app_var high_fanout_net_threshold 0
+set_app_var dct_placement_ignore_scan true
+
+set_app_var disable_multicore_resource_check true
+
+
+
+
